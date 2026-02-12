@@ -1,3 +1,6 @@
 [submodule "whitelist-transfer-hook"]
 	path = whitelist-transfer-hook
 	url = https://github.com/Nifix001/whitelist-transfer-hook.git
+[submodule "transfer-hook-vault"]
+	path = transfer-hook-vault
+	url = https://github.com/Nifix001/transfer-hook-vault.git
