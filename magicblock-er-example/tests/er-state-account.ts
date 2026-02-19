@@ -27,14 +27,16 @@ describe("er-state-account", () => {
   );
   console.log(`Current SOL Public Key: ${anchor.Wallet.local().publicKey}`);
 
+  const program = anchor.workspace.erStateAccount as Program<ErStateAccount>;
+
+  const ephemeralProgram = new Program(program.idl, providerEphemeralRollup);
+
   before(async function () {
     const balance = await provider.connection.getBalance(
       anchor.Wallet.local().publicKey,
     );
     console.log("Current balance is", balance / LAMPORTS_PER_SOL, " SOL", "\n");
   });
-
-  const program = anchor.workspace.erStateAccount as Program<ErStateAccount>;
 
   const userAccount = anchor.web3.PublicKey.findProgramAddressSync(
     [Buffer.from("user"), anchor.Wallet.local().publicKey.toBuffer()],
@@ -103,6 +105,10 @@ describe("er-state-account", () => {
     );
 
     console.log("\nUser Account State Updated: ", txHash);
+  });
+
+  it("Randomise User state", async () => {
+    let tx = await program.methods.consume
   });
 
   it("Commit and undelegate from Ephemeral Rollup!", async () => {
